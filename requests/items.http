@@ -1,0 +1,190 @@
+### Get All items
+GET {{baseUrl}}/items
+
+### Get All items visible
+GET {{baseUrl}}/items?state=visible
+
+### Get All items vendu
+GET {{baseUrl}}/items?state=vendu
+
+### Get All items refusé
+GET {{baseUrl}}/items?state=refusé
+
+### Get All items accepté
+GET {{baseUrl}}/items?state=accepté
+
+### Get All items en vente
+GET {{baseUrl}}/items?state=en vente
+
+### Get All table
+GET {{baseUrl}}/items?type=Table
+
+### Get stats
+GET {{baseUrl}}/items/statistics?dateStart=2023-03-04&dateEnd=2024-06-08
+Authorization: {{jeanToken}}
+
+### Get All Table visible
+GET {{baseUrl}}/items?state=visible&type=Table
+
+### Get All vendu vaisselle moins que 7 euros
+GET {{baseUrl}}/items?state=vendu&type=Vaisselle&amountMin=6&amountMax=10&date=2023-03-25
+
+### Get All items white invalid amount
+GET {{baseUrl}}/items?state=vendu&type=Vaisselle&amountMin=12&amountMax=1
+
+
+### Get item by id 2
+GET {{baseUrl}}/items/1
+
+### acceptPorposal for item with id 5
+PATCH {{baseUrl}}/items/acceptProposal/5
+Authorization: {{jeanToken}}
+
+### declinePorposal for item with id 5
+PATCH {{baseUrl}}/items/declineProposal/5
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "reasonForRefusal": "Trop abimé"
+}
+
+
+### indicate item in store for item with id 5
+PATCH {{baseUrl}}/items/indicateItemStore/5
+Authorization: {{jeanToken}}
+
+### indicate item in workshop for item with id 5
+PATCH {{baseUrl}}/items/indicateItemWorkshop/5
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+### indicate item is for sale
+PATCH {{baseUrl}}/items/indicateItemForSale/5
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "price": 9.5
+}
+
+### indicate item is sold for item with id 5
+PATCH {{baseUrl}}/items/indicateItemIsSold/5
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+// todo: 401 Unauthorized
+### indicate item with id 1 is withdrawn from sale
+PATCH {{baseUrl}}/items/removeObjectFromSale/1
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+### Proposer un objet avec un numero de telephone
+POST {{baseUrl}}/items
+Content-Type: application/json
+
+{
+  "timeSlot": "11:00 - 13:00",
+  "itemType": "Table",
+  "description": "Testt Ajout",
+  "phoneNumber": "+33612345678",
+  "picture": "Fauteuil-design-gee14e1707_1280.jpg",
+  "dateParkArrival": "2023-03-04"
+}
+
+### Proposer un objet avec un numero de telephone
+POST {{baseUrl}}/items/userisconnected
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "timeSlot": "11:00 - 13:00",
+  "itemType": "Table",
+  "description": "Testt Ajjout connecter prout",
+  "picture": "Fauteuil-design-gee14e1707_1280.jpg",
+  "dateParkArrival": "2023-03-04"
+}
+
+### Get all removable items
+GET {{baseUrl}}/items/allRemovableItems
+
+
+###get availabilities
+GET {{baseUrl}}/items/availabilities
+
+### Post saturday
+POST {{baseUrl}}/items/availabilities
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "availability": "2023-06-24"
+}
+
+### Post friday
+POST {{baseUrl}}/items/availabilities
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "availability": "2023-06-23"
+}
+
+### Post saturday already passed
+POST {{baseUrl}}/items/availabilities
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "availability": "2023-01-07"
+}
+
+### Login Manager
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+  "login": "jean.dupont@vinci.be",
+  "password": "donut"
+}
+
+> {%
+  client.global.set("jeanToken", response.body.token);
+%}
+
+### get all item types
+GET {{baseUrl}}/items/types
+
+### get my items
+GET {{baseUrl}}/items/myItems
+Authorization: {{jeanToken}}
+
+### update item
+PATCH {{baseUrl}}/items
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "id": 40,
+  "timeSlot": "11:00 - 13:00",
+  "itemType": "Table",
+  "description": "Testt Update",
+  "dateParkArrival": [
+    2023,
+    3,
+    4
+  ],
+  "state": "accepté",
+  "phoneNumber": "+33612345678",
+  "picture": "Fauteuil-design-gee14e1707_1280.jpg"
+}
+
+
+### indicate item in shop is sold
+PATCH {{baseUrl}}/items/indicateItemInShopIsSold/95
+Authorization: {{jeanToken}}
+Content-Type: application/json
+
+{
+  "price" : 9.5
+}

@@ -1,0 +1,89 @@
+body{
+  background-color: #f8f1d8;
+}
+
+#bg-personnalisee{
+  background-color: #fdfbf4;
+}
+
+#show-password {
+  display: none;
+  font-size: 12px;
+  margin-top: 5px;
+}
+.card-img-top {
+  object-fit: cover;
+  height: 300px; /* ou la taille souhaitée */
+
+}
+
+#navbarWrapper{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+.footer{
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+main{
+  padding-bottom: 30px;
+  padding-top: 30px;
+}
+
+
+@font-face {
+  font-family: 'Blackadder';
+  src: url('./BlackadderITC.otf') format('opentype');
+}
+
+.titreNavbar{
+  font-family: 'Blackadder';
+  font-size: 35px;
+}
+
+.titreNavbar2{
+  font-family: 'Blackadder';
+  font-size: 30px;
+}
+
+#tabPersonnalise .nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+  border-color: #78c2ad;
+}
+
+#tabPersonnalise .nav-tabs .nav-item.show .nav-link,
+.nav-tabs  {
+  border-color: #78c2ad;
+}
+
+#tabPersonnalise .nav-item {
+  background-color: #f8f1d8; /* Remplacer la couleur par celle de votre choix */
+}
+
+#tabPersonnalise .nav-item .nav-link.active {
+  background-color: #86c8b5; /* Remplacer la couleur par celle de votre choix */
+}
+
+#tabPersonnalise .nav-item .nav-link:hover{
+  border-color: #78c2ad;
+}
+
+* Définit la position des flèches de navigation *
+.slick-prev {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  right: 0;
+}

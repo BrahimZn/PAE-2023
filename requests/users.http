@@ -1,0 +1,111 @@
+### Login Manager
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+  "login":"jean.dupont@vinci.be",
+  "password":"donut"
+}
+
+> {%
+  client.global.set("jeanToken", response.body.token);
+%}
+
+### Login user
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+  "login":"caro.line@hotmail.com",
+  "password":"mdpusr.2"
+}
+
+> {%
+  client.global.set("jeanToken", response.body.token);
+%}
+
+
+### retrieves a user’s information with their token
+GET {{baseUrl}}/users/me
+Authorization: {{jeanToken}}
+
+### Login and password blank
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+  "login":"    ",
+  "password":"     "
+}
+
+> {%
+  client.global.set("jeanToken", response.body.token);
+%}
+
+### Login with invalid format
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+  "login":"notemailhehe",
+  "password":"flop"
+}
+
+> {%
+  client.global.set("jeanToken", response.body.token);
+%}
+
+### Login user
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+  "login":"brahim@vinci.be",
+  "password":"123"
+}
+
+> {%
+  client.global.set("brahimToken", response.body.token);
+%}
+
+### Get All users with user token
+GET {{baseUrl}}/users
+Authorization: {{brahimToken}}
+### Get All users with managerToken
+GET {{baseUrl}}/users
+Authorization: {{jeanToken}}
+
+### indicate user with id 3 to Helper with manager token
+POST {{baseUrl}}/users/indicateAsHelper/19
+Authorization: {{jeanToken}}
+### indicate user with id 3 to Helper with user token
+POST {{baseUrl}}/users/indicateAsHelper/19
+Authorization: {{brahimToken}}
+
+### register test
+POST {{baseUrl}}/auths/register
+Content-Type: application/json
+
+{
+  "lastName":"afou",
+  "firstName": "billy au sucre",
+  "email": "brahimtest1@woipy.com",
+  "password": "Donut au sel",
+  "mobileNumber":"04taeurapasmonum",
+  "profilePicture": "11111"
+}
+
+### update profile
+PATCH {{baseUrl}}/users
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "userId" :1,
+  "lastName":"jean",
+  "firstName": "update",
+  "email": "jean.dupont@vinci.be",
+  "password": "$2a$10$ELe7yCWmqVyFRwbztdFgBepf.MRRip6mtCgsV5JRrZBGw/OZUoEDu",
+  "mobileNumber":"0486178834",
+  "profilePicture": "bazz.jpg"
+}

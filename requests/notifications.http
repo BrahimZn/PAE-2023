@@ -1,0 +1,19 @@
+### Get All notifications
+GET {{baseUrl}}/notifications
+Authorization: {{jeanToken}}
+
+### Get All notifications User
+GET {{baseUrl}}/notifications/my
+Authorization: {{jeanToken}}
+
+
+### Read a notif
+POST {{baseUrl}}/notifications/read
+Content-Type: application/json
+Authorization: {{jeanToken}}
+
+{
+  "id": "42"
+}
+
+
